@@ -34,7 +34,7 @@ GmailPy
 ├── credentials
 │  ├──                                  # add here: conf.conf
 │  └──                                  # add here: general.json
-├── tests
+├── tests                               # will be provided soon
 │  ├── test_compiled_regexes.py
 │  ├── test_email_enumerators.py
 │  ├── test_email_sections.py
@@ -76,13 +76,6 @@ The source code is organized into a modular structure, with each component respo
 
 
 ## **Installation**
-
-### From PyPi
-To install GmailPy, you can use pip:
-
-```python
-pip install gmailpy
-```
 
 ### From Wheel
 After downloading the wheel package, run:
