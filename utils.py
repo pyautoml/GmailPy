@@ -10,11 +10,11 @@ import logging
 from pathlib import Path
 from datetime import datetime
 from termcolor import colored, COLORS
-from compiled_regexes import EMAIL_ADDRESS
+from .compiled_regexes import EMAIL_ADDRESS
 from typing import Any, Final, List, Optional
-from email_enumerators import AllowedAttachment
+from .email_enumerators import AllowedAttachment
 from email_validator import validate_email, EmailNotValidError
-from exceptions import ( 
+from .exceptions import ( 
     UtilsException,
     UtilsFileError,
     UtilsEmailError,
@@ -22,7 +22,7 @@ from exceptions import (
     UtilsCallableError,
     TokenFileOpenException,
     UtilsTextFormattingError,
-    TokenSerializationException,
+    TokenSerializationException
 )
 
 
