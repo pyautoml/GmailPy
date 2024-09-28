@@ -4,7 +4,7 @@ import json
 from logging import Logger
 from datetime import datetime
 from typing import Final, Optional
-from utils import save_email, null_logger
+from .utils import save_email, null_logger
 
 
 """
