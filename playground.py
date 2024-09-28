@@ -3,11 +3,11 @@
 import sys
 from typing import Final
 from datetime import datetime
-from gmail import GmailService
+from .gmail import GmailService
 from configparser import ConfigParser
-from email_enumerators import LinksType
-from template import emails_sumup_template
-from utils import abspath, indent, file_exists
+from .email_enumerators import LinksType
+from .template import emails_sumup_template
+from .utils import abspath, indent, file_exists
 
 
 """
@@ -21,8 +21,7 @@ After that, provide the necessary credentials (the current files contain only du
     - ./credentials/conf.conf
     - ./credentials/general.json
 
-Please review the README.md file for more details.
-            
+Please review the README.md file for more details.    
 
 If you're not sure where to place files, please take a look below at the generated file tree:
 src
@@ -50,7 +49,6 @@ LOGGER_NAME: Final[str] ="GmailPy"
 # provide your gmail email address
 RECIPIENT = "your_email@example.com"
 SENDER = "your_email@example.com"
-
 
 # ------------------------------------------------------------------------------
 # Example usage - using basic components you can create your custom solutions.
@@ -120,7 +118,6 @@ def create_and_save_draft(gmail) -> None:
     gmail._create_email_draft(draft_message=text, subject="Weekly Emails Summary")
 
 
-
 def create_and_send_email(gmail, your_email: str) -> None:
     email = gmail._create_email(
         sender=your_email,
@@ -129,6 +126,7 @@ def create_and_send_email(gmail, your_email: str) -> None:
         email_message="Hello,\nThis is a test email.",
     )
     print(gmail._send_email(email=email))
+
 
 def setup() -> dict:
     config = ConfigParser()
@@ -151,7 +149,6 @@ def main():
 
     # connector -------------------------
     gmail = GmailService(setup=setup(), log_level="debug")
-
 
     # methods --------------------
     # create_new_label(gmail)
