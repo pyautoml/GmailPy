@@ -2,7 +2,6 @@
 
 from enum import Enum
 
-
 """This module contains enumerations to be used across the whole project."""
 
 class LabelType(Enum):
