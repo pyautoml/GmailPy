@@ -16,12 +16,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 # custom
-from email_tracker import TrackedEmail
-from email_enumerators import (
+from .email_tracker import TrackedEmail
+from .email_enumerators import (
     LabelType, 
     LinksType
 )
-from exceptions import (
+from .exceptions import (
     GmailHttpError,
     UtilsFileError,
     UtilsException,
@@ -36,7 +36,7 @@ from exceptions import (
     GmailApiCallTimeoutError,
     TokenSerializationException
 )
-from utils import (
+from .utils import (
     clean_text,
     save_token, 
     load_token,
@@ -51,7 +51,7 @@ from utils import (
     save_local_attachment,
     is_attachment_allowed
 )
-from email_sections import (
+from .email_sections import (
     add_links,
     get_labels,
     create_visible_label,
@@ -296,7 +296,7 @@ class GmailService:
             flow = InstalledAppFlow.from_client_secrets_file(self.credentials_file, self.__scopes)
             self.credentials = flow.run_local_server(port=0)
 
-            self.logger.debug("Savinf locally new token: token.pickle")
+            self.logger.debug("Saving locally new token: token.pickle")
             save_token(self.token_file, self.credentials)
         except (GmailHttpError, GmailPayloadError, GmailApiCallTimeoutError, GmailSetupError, GmailServiceError) as e:
             logging.critical(f"Api Call exception: {e}. Program will shut down.")
