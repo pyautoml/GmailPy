@@ -5,17 +5,15 @@ from logging import Logger
 from bs4 import BeautifulSoup
 from typing import Any, Dict, List, Union
 from googleapiclient.errors import HttpError
-from exceptions import non_empty_string, non_empty_dict
-from utils import extract_email_address, clean_text, null_logger
-from compiled_regexes import HTTP_HTTPS_URL, DETAILED_LINK, BASIC_LINK
-
+from .exceptions import non_empty_string, non_empty_dict
+from .utils import extract_email_address, clean_text, null_logger
+from .compiled_regexes import HTTP_HTTPS_URL, DETAILED_LINK, BASIC_LINK
 
 
 """
 This module provides functions for extracting different sections of an email message, such as links, headers, recipients, and more. 
 The main functionalities of the module are outlined below:
 """
-
 
 def links_detailed(links: List[str], logger: Logger = null_logger()) -> List[str]:
     """
