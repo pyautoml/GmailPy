@@ -975,7 +975,7 @@ class GmailService:
     @sleep_and_retry
     @limits(calls=MAX_API_CALLS, period=API_AWAIT_PERIOD)
     @gmail_api_exceptions
-    def __retrieve_emails(self, query: str = "is:unread in:inbox", filters: dict = None, max_resulst: int = 10, page_token: int = None, fields: str = "messages") -> List[tuple]:
+    def __retrieve_emails(self, query: str = "is:unread in:inbox", filters: dict = None, max_results: int = 10, page_token: int = None, fields: str = "messages") -> List[tuple]:
         """
         Retrieves emails from the Gmail account based on the provided custom filter.
         Example return data:
@@ -1018,7 +1018,7 @@ class GmailService:
                 .list(
                     userId="me", 
                     q=query,
-                    maxResults=max_resulst,
+                    maxResults=max_results,
                     pageToken=page_token,
                     fields=fields  # 'messages' = all fields by default
                 )
@@ -1108,7 +1108,7 @@ class GmailService:
     def _get_emails(
         self,
         query: str = "is:unread in:inbox",
-        max_resulst: int = 10,
+        max_results: int = 10,
         links_type: LinksType = LinksType.NONE,
         store_headers: bool = False,
         raw: bool = False,
@@ -1121,7 +1121,7 @@ class GmailService:
 
         Parameters:
         query (str): If filter is not provided, a simple query is made to set the retrieved messages scope. "is:unread in:inbox" by default.
-        max_resulst (int): How many emails should be returned. 10 by default. None means 'return all'. A positive integer is expected or None value.
+        max_results (int): How many emails should be returned. 10 by default. None means 'return all'. A positive integer is expected or None value.
         links_type (LinksType, optional): A LinksType representing the preference for adding links to the email payload:
             - LinksType.NONE: no links attached to the final message,
             - LinksType.BASIC: only unique domains attached to the final message,
@@ -1146,8 +1146,8 @@ class GmailService:
         self.logger.debug("Retrieving emails and/or attachmens.")
 
         try:
-            max_resulst = verify_limit(max_resulst)
-            messages = self.__retrieve_emails(query=query, filters=filters, max_resulst=max_resulst )
+            max_results = verify_limit(max_results)
+            messages = self.__retrieve_emails(query=query, filters=filters, max_results=max_results )
 
             if not messages:  
                 self.logger.debug("No messages found.")
