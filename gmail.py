@@ -776,20 +776,20 @@ class GmailService:
         self.logger.debug("Reading email.")
 
         if not email:
-            self.loger.debug("No email found.")
+            self.logger.debug("No email found.")
             return  None
         
         if not isinstance(email, TrackedEmail):
-            self.loger.exception(f"Email object should be of 'TrackedEmail' type, not '{type(email)}'.")
+            self.logger.exception(f"Email object should be of 'TrackedEmail' type, not '{type(email)}'.")
             raise GmailEmailError(f"Email object should be of 'TrackedEmail' type, not '{type(email)}'.")
         
-        self.loger.debug("Unpacking email data.")
+        self.logger.debug("Unpacking email data.")
         email_data = email.unpack()
 
         if mark_as_read:
             self._mark_email_as_read(email.message_id)
         if parse:
-            self.loger.debug("Parsing email to json str.")
+            self.logger.debug("Parsing email to json str.")
             return json.dumps(email_data, indent=4)
         return email_data
 
@@ -810,7 +810,7 @@ class GmailService:
         self.logger.debug("Reading multiple emails.")
 
         if not isinstance(emails, deque):
-            self.loger.exception(f"Emails should be of deque['TrackedEmail'] type, not '{type(emails)}'.")
+            self.logger.exception(f"Emails should be of deque['TrackedEmail'] type, not '{type(emails)}'.")
             raise GmailEmailError(f"Emails should be of deque['TrackedEmail'] type, not '{type(emails)}'.")
         
         self.logger.debug(f"Emails to yield: {len(emails)}")
