@@ -16,12 +16,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 # custom
-from .email_tracker import TrackedEmail
-from .email_enumerators import (
+from gmailpy.email_tracker import TrackedEmail
+from gmailpy.email_enumerators import (
     LabelType, 
     LinksType
 )
-from .exceptions import (
+from gmailpy.exceptions import (
     GmailHttpError,
     UtilsFileError,
     UtilsException,
@@ -36,7 +36,7 @@ from .exceptions import (
     GmailApiCallTimeoutError,
     TokenSerializationException
 )
-from .utils import (
+from gmailpy.utils import (
     clean_text,
     save_token, 
     load_token,
@@ -51,7 +51,7 @@ from .utils import (
     save_local_attachment,
     is_attachment_allowed
 )
-from .email_sections import (
+from gmailpy.email_sections import (
     add_links,
     get_labels,
     create_visible_label,
