@@ -67,7 +67,7 @@ def delete_new_label(gmail, label_name: str = "CoolCat") -> None:
 
 def read_one_email(gmail, parse: bool = False) -> None:
     # Read one last email - unread, from INBOX (make sure you have at least 1 unread email in the Inbox)
-    email = gmail._get_emails(max_resulst=1, links_type=LinksType.BASIC, raw=False)
+    email = gmail._get_emails(max_results=1, links_type=LinksType.BASIC, raw=False)
     print(gmail._read_email(email, parse=parse))
 
 
@@ -75,7 +75,7 @@ def read_one_email_save_attachments(gmail, query: str = "is:read in:inbox", pars
     # read one last email - unread, from INBOX (make sure you have at least 1 unread email with attachments in the Inbox)
     # attachments must be compliant with media type stated in `email_enumerators.py`AllowedAttachment
     email = gmail._get_emails(
-        max_resulst=1,
+        max_results=1,
         query=query,
         links_type=LinksType.BASIC,
         return_attachments=False,
@@ -89,14 +89,14 @@ def read_one_email_save_attachments(gmail, query: str = "is:read in:inbox", pars
 
 
 def read_many_emails(gmail, how_many: int = 2) -> None:
-    read_emails = gmail._get_emails(query="is:read in:inbox", max_resulst=how_many, links_type=LinksType.NONE)
+    read_emails = gmail._get_emails(query="is:read in:inbox", max_results=how_many, links_type=LinksType.NONE)
     emails = gmail._read_emails(read_emails)
     print(indent(next(emails)), end="\n\n")
     print(indent(next(emails)), end="\n\n")
 
 
 def delete_email(gmail) -> None:
-    emails = gmail._get_emails(query= "is:read in:inbox", max_resulst=1, links_type=LinksType.BASIC)
+    emails = gmail._get_emails(query= "is:read in:inbox", max_results=1, links_type=LinksType.BASIC)
     for email in emails:
         gmail._delete_email(email)
 
