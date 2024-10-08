@@ -14,7 +14,6 @@ from google.auth.transport.requests import Request
 from typing import Generator, Final, List, Optional
 from google_auth_oauthlib.flow import InstalledAppFlow
 
-
 # custom
 from gmailpy.email_tracker import TrackedEmail
 from gmailpy.email_enumerators import (
@@ -156,8 +155,11 @@ class GmailService:
 
         self.logger.debug("Starting setup verification.")
 
+
         if not isinstance(setup, dict):
             self.logger.exception(color_message(f"'setup' parameter must be a dict, not '{type(setup)}'"))
+            if 'invalid_grant' or 'Bad Request' in f"{setup}":
+                raise GmailSetupError(f"Gmail credentials error: {setup}")
             raise GmailSetupError(f"'setup' parameter must be a dict, not '{type(setup)}'")
 
         if not setup:
