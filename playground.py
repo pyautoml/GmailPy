@@ -141,14 +141,14 @@ def setup() -> dict:
     }
     return setup
 
-def main():
+# def main():
     # -----------------------------------------------------------------------------
     # Uncomment each part ste-by-step to check how it works.
     # Advised: read comments on top of each playground method before running it.
     # -----------------------------------------------------------------------------
 
     # connector -------------------------
-    gmail = GmailService(setup=setup(), log_level="debug")
+    # gmail = GmailService(setup=setup(), log_level="debug")
 
     # methods --------------------
     # create_new_label(gmail)
@@ -165,5 +165,5 @@ def main():
     # delete_email(gmail)
     # remove_from_bin(gmail)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
