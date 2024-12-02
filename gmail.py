@@ -780,6 +780,9 @@ class GmailService:
         if not email:
             self.logger.debug("No email found.")
             return  None
+
+        if len(email) == 1:
+            email = email[0]
         
         if not isinstance(email, TrackedEmail):
             self.logger.exception(f"Email object should be of 'TrackedEmail' type, not '{type(email)}'.")
